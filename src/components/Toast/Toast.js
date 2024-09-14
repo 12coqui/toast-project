@@ -2,7 +2,7 @@ import React from 'react';
 import { AlertOctagon, AlertTriangle, CheckCircle, Info, X } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
-import useEscapeKey from '../use-escape-key';
+import useEscapeKey from '../hooks/use-escape-key';
 import { ToastContext } from '../ToastProvider/ToastProvider';
 import styles from './Toast.module.css';
 
