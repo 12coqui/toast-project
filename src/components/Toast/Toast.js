@@ -2,6 +2,7 @@ import React from 'react';
 import { AlertOctagon, AlertTriangle, CheckCircle, Info, X } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
+import useEscapeKey from '../use-escape-key';
 import { ToastContext } from '../ToastProvider/ToastProvider';
 import styles from './Toast.module.css';
 
@@ -15,19 +16,7 @@ const ICONS_BY_VARIANT = {
 function Toast({ variant, message, dismissToast, index }) {
 	const Icon = ICONS_BY_VARIANT[variant];
 	const { setToasts } = React.useContext(ToastContext);
-	React.useEffect(() => {
-		function handleKeyDown(event) {
-			if (event.key === 'Escape') {
-				setToasts([]);
-			}
-		}
-
-		window.addEventListener('keydown', handleKeyDown);
-
-		return () => {
-			window.removeEventListener('keydown', handleKeyDown);
-		};
-	}, []);
+	useEscapeKey(() => setToasts([]));
 
 	return (
 		<div className={`${styles.toast} ${styles[variant]}`}>
